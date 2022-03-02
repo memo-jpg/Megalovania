@@ -135,20 +135,14 @@ int main (void) {
                 if (value < 85){
                     	printf("Voice In!! \n");
                 	printf("music is being played...\n");
-		/*
-                for(i=0;i<melody_len;i++){
-                        softToneWrite(BuzPin, melody[i]);       
-                        delay(noteDurations[i] * 1.45);
-                } */
+	
 
 		
 		for(int thisNote = 0; thisNote < melody_len; thisNote++){
 			int noteDuration = TEMPO / noteDurations[thisNote];
-			//tone(8, melody[thisNote], noteDuration);
 			softToneWrite(BuzPin, melody[thisNote]);
 			int pauseBetweenNotes = noteDuration *1.45;
 			delay(pauseBetweenNotes);
-			//noTone(8);
 		}
 		
 
@@ -157,50 +151,3 @@ int main (void) {
         }
         return 0;
 }
-
-
-/*
-int song_1[] = {CM3,CM5,CM6,CM3,CM2,CM3,CM5,CM6,CH1,CM6,CM5,CM1,CM3,CM2,
-                                CM2,CM3,CM5,CM2,CM3,CM3,CL6,CL6,CL6,CM1,CM2,CM3,CM2,CL7,
-                                CL6,CM1,CL5};
-
-int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
-                                1,1,1,1,1,1,3};
-
-int song_2[] = {CM1,CM1,CM1,CL5,CM3,CM3,CM3,CM1,CM1,CM3,CM5,CM5,CM4,CM3,CM2,
-                                CM2,CM3,CM4,CM4,CM3,CM2,CM3,CM1,CM1,CM3,CM2,CL5,CL7,CM2,CM1
-                                };
-
-int beat_2[] = {1,1,1,3,1,1,1,3,1,1,1,1,1,1,3,1,1,1,2,1,1,1,3,1,1,1,3,3,2,3};
-
-int main(void)
-{
-        int i, j;
-
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
-                printf("setup wiringPi failed !");
-                return 1;
-        }
-
-        if(softToneCreate(BuzPin) == -1){
-                printf("setup softTone failed !");
-                return 1;
-        }
-
-        while(1){
-                printf("music is being played...\n");
-
-                for(i=0;i<sizeof(song_1)/4;i++){
-                        softToneWrite(BuzPin, song_1[i]);       
-                        delay(beat_1[i] * 500);
-                }
-
-                for(i=0;i<sizeof(song_2)/4;i++){
-                        softToneWrite(BuzPin, song_2[i]);       
-                        delay(beat_2[i] * 500);
-                }       
-        }
-        return 0;
-}
-
-*/
